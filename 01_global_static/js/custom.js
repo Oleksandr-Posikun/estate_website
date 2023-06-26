@@ -39,6 +39,7 @@ UPDATE MARGIN SIZE                                                              
 ======================================================================================================================*/
 function updateStyles(cls_name) {
     const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     const elements = document.getElementsByClassName(cls_name);
     if (windowWidth < 900) {
         for (let i = 0; i < elements.length; i++) {
@@ -49,6 +50,17 @@ function updateStyles(cls_name) {
             elements[i].style.marginBottom = "calc(var(--index) * 24)";
         }
     }
+
+    if (windowHeight > 1500) {
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].style.marginBottom = "calc(var(--index) * 25";
+        }
+    }else {
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].style.marginBottom = "calc(var(--index) * 15)";
+        }
+    }
+
 }
 
 updateStyles('layer__head');
@@ -70,6 +82,20 @@ let touchStartX = 0;
 let touchEndX = 0;
 let intervalId = null;
 
+
+function addClsAnimate(arg) {
+    arg.forEach((caption, index) => {
+        caption.style.animationDelay = `${index * 0.2}s`;
+        caption.classList.add('animate-left-to-right');
+    });
+}
+
+function removeClsAnimate(arg) {
+    arg.forEach((caption) => {
+        caption.style.animationDelay = '';
+        caption.classList.remove('animate-left-to-right');
+    });
+}
 const startCarousel = () => {
     intervalId = setInterval(() => {
         skipSlide(dotIndex + 1);
@@ -84,30 +110,16 @@ const showTextAnimation = (sliderLine) => {
     const captions = sliderLine.querySelectorAll('.layer__caption');
     const titles = sliderLine.querySelectorAll('.layer__title');
 
-    captions.forEach((caption, index) => {
-        caption.style.animationDelay = `${index * 0.2}s`;
-        caption.classList.add('animate-left-to-right');
-    });
-
-    titles.forEach((title, index) => {
-        title.style.animationDelay = `${index * 0.2 + 0.2}s`;
-        title.classList.add('animate-left-to-right');
-    });
+    addClsAnimate(captions)
+    addClsAnimate(titles)
 };
 
 const hideTextAnimation = (sliderLine) => {
     const captions = sliderLine.querySelectorAll('.layer__caption');
     const titles = sliderLine.querySelectorAll('.layer__title');
 
-    captions.forEach((caption) => {
-        caption.style.animationDelay = '';
-        caption.classList.remove('animate-left-to-right');
-    });
-
-    titles.forEach((title) => {
-        title.style.animationDelay = '';
-        title.classList.remove('animate-left-to-right');
-    });
+    removeClsAnimate(captions)
+    removeClsAnimate(titles)
 };
 
 const skipSlide = (index) => {
@@ -182,3 +194,47 @@ sliderLines.forEach((sliderLine) => {
 });
 
 startCarousel();
+
+/*======================================================================================================================
+MENU                                                                                                               MENU
+======================================================================================================================*/
+const mainMenu = document.querySelector('.main-menu');
+const menuList = document.querySelector('.menu-list');
+const menuText = document.querySelectorAll('.menu-text');
+
+// Обработчик события клика на иконку
+mainMenu.addEventListener('click', () => {
+    menuList.style.display = menuList.style.display === 'block' ? 'none' : 'block';
+});
+
+menuList.addEventListener('mouseleave', () => {
+    menuList.style.display = 'none';
+});
+
+// Получаем ссылки на элементы <li> и <p>
+const menuLine = document.querySelectorAll('.menu-line');
+
+menuLine.forEach((line) => {
+    line.addEventListener('mouseover', function (event) {
+        event.preventDefault();
+        const menuLineId = this.id;
+        const menuTextId = document.getElementById(menuLineId);
+        const elementByMenuLineId = document.getElementById(menuLineId);
+
+        elementByMenuLineId.addEventListener('mouseover', () => menuLineState(elementByMenuLineId, '100%'));
+        elementByMenuLineId.addEventListener('mouseout', () => menuLineState(elementByMenuLineId, '15%'));
+        menuTextId.addEventListener('mouseover', () => menuTextState(menuTextId, 'block'));
+        menuTextId.addEventListener('mouseout', () => menuTextState(menuTextId, 'none'));
+    });
+});
+
+function menuTextState(element, style) {
+    const menuText = element.querySelector('.menu-text');
+    menuText.style.display = style;
+}
+
+function menuLineState(element, style) {
+    element.style.width = style;
+}
+
+

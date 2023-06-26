@@ -19,6 +19,10 @@ a{
     color: inherit;
 }
 
+li {
+  list-style-type: none;
+}
+
 /*======================================================================================================================
 WRAPPERS                                                                                                       WRAPPERS
 ======================================================================================================================*/
@@ -72,6 +76,72 @@ WRAPPERS                                                                        
         width: calc(var(--index) * 2.5);
         left: calc(var(--index) * 9);
     }
+}
+
+/*======================================================================================================================
+menu-navigation                                                                                         menu-navigation
+======================================================================================================================*/
+.main-navigation {
+    position: absolute;
+    right: 0;
+    z-index: 9999;
+}
+
+.main-navigation-wrapper {
+    position: relative;
+    background-color: #ffffff;
+    border: 1px solid gold;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.menu-list {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: calc(var(--index)*20);
+    padding: 10px;
+    display: none;
+}
+
+.menu-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.menu-list-wrapper li {
+    margin-bottom: 5px;
+}
+
+.menu-list-wrapper li:last-child {
+    margin-bottom: 0;
+}
+.menu-line {
+    margin: 10px 0;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid gold;
+    border-radius: 50px;
+}
+
+.menu-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.menu-text {
+    display: none;
+    width: 70%;
 }
 
 /*======================================================================================================================
@@ -237,18 +307,19 @@ HEADER                                                                          
 /*=================== Dots slider layers ===================*/
 
 .dots-wrapper {
-    z-index: 1000;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    position: absolute;
-    width: 100%;
+    z-index: 1000;
 }
 
 .dot {
-    margin: 10px 5px;
     width: 15px;
     height: 15px;
+    margin: 10px 5px;
     background-color: rgba(100, 70, 3, 0.65);
     border-radius: 50px;
 }

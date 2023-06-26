@@ -10,8 +10,37 @@
 </head>
 
 <body>
-    {% block main %}
-    {% endblock %}
+
+<nav class="main-navigation">
+    <div class="main-navigation-wrapper">
+        <div class="main-menu">
+           <img  src="{% static 'images/PNGs/General/List 1.png' %}" alt="None">
+        </div>
+        <div class="menu-list">
+            <ul class="menu-list-wrapper">
+                <li class="menu-line" id="menuIcon 1"><a class="menu-content" href="/">
+                    <img class="menu-icon" src="{% static 'images/PNGs/General/Home.png' %}" alt="None">
+                    <p class="menu-text" id="menuText 1">Домашняя страница</p>
+                </a></li>
+                <li class="menu-line" id="menuIcon 2"><a class="menu-content" href="mailto: lll@mail.oo">
+                    <img class="menu-icon" src="{% static 'images/PNGs/Web/Mail.png' %}" alt="None">
+                    <p class="menu-text" id="menuText 2">Написать</p>
+                </a></li>
+                <li class="menu-line" id="menuIcon 3"><a class="menu-content" href="tel: 456123 ">
+                    <img class="menu-icon" src="{% static 'images/PNGs/General/Phone 1.png' %}" alt="None">
+                    <p class="menu-text" id="menuText 3">Позвонить</p>
+                </a></li>
+                <li class="menu-line" id="menuIcon 4"><a class="menu-content" href="/">
+                    <img class="menu-icon" src="{% static 'images/PNGs/General/Users 2.png' %}" alt="None">
+                    <p class="menu-text" id="menuText 4">Про нас</p>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% block main %}
+{% endblock %}
 
 </body>
 </html>
