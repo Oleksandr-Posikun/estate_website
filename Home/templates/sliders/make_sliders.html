@@ -1,0 +1,32 @@
+{% load static %}
+{##}
+<div class="slider-wrapper">
+    {% for item in main_banners %}
+        {% if forloop.first %}
+            <div class="slider-line active-slide">
+            {% include "sliders/slider.html" with data=item cls='animate-left-to-right'%}
+        {% else %}
+            <div class="slider-line">
+            {% include "sliders/slider.html" with data=item %}
+        {% endif %}
+
+    </div>
+    {% endfor %}
+
+
+    <div class="button-skip">
+        <button class="button-prev">‹</button>
+        <button class="button-next">›</button>
+    </div>
+
+    <div class="dots-wrapper">
+        {% for item in main_banners %}
+            {% if forloop.first %}
+                <div class="dot active"></div>
+            {% else %}
+                <div class="dot"></div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    </div>
+</div>

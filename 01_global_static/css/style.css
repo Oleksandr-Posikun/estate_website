@@ -1,0 +1,311 @@
+/*======================================================================================================================
+DEFAULT                                                                                                         DEFAULT
+======================================================================================================================*/
+
+:root {
+    --index: calc(1vw + 1vh)
+}
+
+body {
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+h1 {
+    font-family: 'Unbounded', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+li {
+  list-style-type: none;
+}
+
+.breadcrumbs li {
+    display: inline;
+}
+
+.breadcrumbs a {
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+
+/*======================================================================================================================
+WRAPPERS                                                                                                       WRAPPERS
+======================================================================================================================*/
+
+.position-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.position-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.button-link {
+    max-width: calc(var(--index) / 1.3);
+    transition: transform 1s ease;
+}
+
+.button-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #f5b308;
+    transition: width 0.5s ease;
+}
+
+.button-link:hover {
+    transform: scale(1.1);
+}
+
+.button-link:hover::after {
+    width: calc(var(--index) / 1.2);
+    animation: move-line 1s forwards;
+}
+
+@keyframes move-line {
+    from {
+        width: 0;
+        left: 0;
+
+    }
+    to {
+        width: calc(var(--index) * 2.5);
+        left: calc(var(--index) * 9);
+    }
+}
+
+/*======================================================================================================================
+menu-navigation                                                                                         menu-navigation
+======================================================================================================================*/
+.menu-list {
+   display: flex;
+    position: fixed;
+    z-index: 99999;
+    height: calc(var(--index) * 3.5);
+    overflow: hidden;
+    background-color: #000000;
+    width: 100%;
+    color: gold;
+    border-bottom: gold solid 2px;
+}
+
+.logo-image {
+    width: 10%;
+    border: 1px solid gold;
+    border-radius: 50px;
+    margin: 10px;
+    text-align: center;
+}
+
+.logo-image img {
+
+    height: 100%;
+}
+.menu-list-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center
+}
+
+/*======================================================================================================================
+HEADER                                                                                                           HEADER
+======================================================================================================================*/
+
+.main-header {
+    position: relative;
+}
+
+.main-header::after {
+    z-index: 100;
+    content: '';
+    width: 100%;
+    height: 300px;
+    position: absolute;
+}
+
+.layers {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.layer__head {
+    margin-bottom: calc(var(--index) * 20);
+    transform: translate3d(0, calc(var(--scrollTop)/ 1.5), 0);
+    z-index: 33;
+    will-change: transform;
+    text-transform: uppercase;
+    font-weight: 700;
+    width: 100vw;
+    margin-inline: 20px;
+}
+
+
+
+.layer {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-size: cover ;
+    background-position: center;
+    will-change: transform;
+    z-index: 2;
+}
+
+/*===================    Text slider    ===================*/
+
+.layer__caption {
+    max-width: calc(var(--index) * 22 );
+    font-size: calc(var(--index) /1.5);
+    letter-spacing: calc(var(--index) / 2.5);
+}
+
+.layer__title {
+    font-size: calc(var(--index) * 0.9);
+    letter-spacing: calc(var(--index) / 2.5);
+    max-width: 300px;
+}
+
+/*===================    Text animation    ===================*/
+
+.text__animation{
+    opacity: 0;
+}
+
+.animate-left-to-right {
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.text__animation.animate-left-to-right {
+    animation-name: slideIn;
+    animation-delay: 0.2s;
+}
+
+
+/*=================== Parallax animation ===================*/
+
+.layer__base {
+    transform: translate3d(0, calc(var(--scrollTop) / 1.6), 0);
+    z-index: 0;
+}
+
+.layer__middle {
+    transform: translate3d(0, calc(var(--scrollTop) / 2), 0);
+}
+
+.layer__front {
+    transform: translate3d(0, calc(var(--scrollTop) / 5), 0);
+}
+
+/*===================    Button slider   ===================*/
+
+.button-skip {
+    margin-inline: 10px;
+    margin-top: 50vh;
+    position: absolute;
+    display: flex;
+    width: 98%;
+    height: 80px;
+    justify-content: space-between;
+}
+
+.button-prev, .button-next{
+    display: inline-block;
+    vertical-align: middle;
+    z-index: 99;
+    background-color: rgba(239,181,88,0);
+    font-size: 50px;
+    color: #f5b308;
+    border: 1px solid #f5b308;
+    border-radius: 50px;
+}
+
+.button-prev:hover, .button-next:hover{
+    transform: scale(1.3);
+    color: rgba(100, 70, 3, 0.65);
+    border: rgba(100, 70, 3, 0.65);
+}
+
+/*===================       slider       ===================*/
+
+.slider-wrapper {
+    height: 100vh;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.slider-line {
+    display: flex;
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    transition: opacity 0.7s  cubic-bezier(0.77, 0.02, 0.73, 0.39);
+}
+
+.active-slide{
+    z-index: 99;
+    opacity: 1;
+}
+
+/*=================== Dots slider layers ===================*/
+
+.dots-wrapper {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.dot {
+    width: 15px;
+    height: 15px;
+    margin: 10px 5px;
+    background-color: rgba(100, 70, 3, 0.65);
+    border-radius: 50px;
+}
+
+.active {
+    background: gold;
+}
+/*======================================================================================================================
+ARTICLE                                                                                                         ARTICLE
+======================================================================================================================*/
+
+.main-article {
+    min-height: 100vh;
+}
