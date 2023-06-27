@@ -1,34 +1,3 @@
-class StylesUpdater {
-    constructor() {
-        this.windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        this.windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    }
-
-    /**
-     * Updates the styles of elements with the specified class name.
-     * @param {string} clsName - The class name of the elements to update.
-     */
-    update(clsName) {
-        const elements = document.getElementsByClassName(clsName);
-
-        for (let i = 0; i < elements.length; i++) {
-            const element = elements[i];
-
-            if (this.windowWidth < 900) {
-                element.style.marginBottom = `calc(${2 * 115}px + ${Math.floor(400 / 2)}px)`;
-            } else {
-                element.style.marginBottom = 'calc(var(--index) * 24)';
-            }
-
-            if (this.windowHeight > 1500) {
-                element.style.marginBottom = 'calc(var(--index) * 25)';
-            } else {
-                element.style.marginBottom = 'calc(var(--index) * 15)';
-            }
-        }
-    }
-}
-
 class TextAnimation {
     constructor(container, ...args) {
         this.lists = [];
@@ -94,10 +63,7 @@ class Page {
         this.line = document.createElement('span');
         this.line.classList.add('underline-line');
         this.buttonLink.appendChild(this.line);
-
-        this.stylesUpdater = new StylesUpdater();
         this.initializeEvents();
-        this.stylesUpdater.update('layer__head');
     }
 
     /**
@@ -107,7 +73,6 @@ class Page {
         window.addEventListener('scroll', this.handleScroll.bind(this));
         this.buttonLink.addEventListener('mouseenter', this.handleMouseEnter.bind(this));
         this.buttonLink.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
-        window.addEventListener('resize', this.handleResize.bind(this));
     }
 
     /**
@@ -142,16 +107,10 @@ class Page {
         this.line.style.width = '0';
         this.line.style.transform = 'translateX(0)';
     }
-
-    /**
-     * Handles the resize event.
-     */
-    handleResize() {
-        this.stylesUpdater.update('layer__head');
-    }
 }
 
 const page = new Page();
+
 
 /*======================================================================================================================
 SLIDER                                                                                                           SLIDER
@@ -218,7 +177,7 @@ class Slider {
     startCarousel() {
         this.intervalId = setInterval(() => {
             this.skipSlide(this.dotIndex + 1);
-        }, 6000);
+        }, 999999);
     }
 
     /**
