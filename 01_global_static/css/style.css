@@ -23,19 +23,6 @@ li {
   list-style-type: none;
 }
 
-.breadcrumbs li {
-    display: inline;
-}
-
-.breadcrumbs a {
-    text-decoration: none;
-}
-
-.breadcrumbs a:hover {
-    text-decoration: underline;
-}
-
-
 /*======================================================================================================================
 WRAPPERS                                                                                                       WRAPPERS
 ======================================================================================================================*/
@@ -142,13 +129,12 @@ HEADER                                                                          
 .layers {
     height: 100vh;
     display: flex;
-    align-items: center;
     overflow: hidden;
     position: relative;
 }
 
 .layer__head {
-    margin-bottom: calc(var(--index) * 20);
+    margin-top: calc(var(--index) * 5);
     transform: translate3d(0, calc(var(--scrollTop)/ 1.5), 0);
     z-index: 33;
     will-change: transform;
