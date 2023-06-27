@@ -23,26 +23,37 @@ li {
   list-style-type: none;
 }
 
+.breadcrumbs li {
+    display: inline;
+}
+
+.breadcrumbs a {
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+
 /*======================================================================================================================
 WRAPPERS                                                                                                       WRAPPERS
 ======================================================================================================================*/
 
-.position-center{
-    text-align: center;
-    justify-content: center;
-    max-width: 300px;
+.position-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.position-right{
-    text-align: right;
-    justify-content: right;
-    max-width: 300px;
+.position-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .button-link {
     max-width: calc(var(--index) / 1.3);
-    display: block;
-    text-align: center;
     transition: transform 1s ease;
 }
 
@@ -81,67 +92,35 @@ WRAPPERS                                                                        
 /*======================================================================================================================
 menu-navigation                                                                                         menu-navigation
 ======================================================================================================================*/
-.main-navigation {
-    position: absolute;
-    right: 0;
-    z-index: 9999;
-}
-
-.main-navigation-wrapper {
-    position: relative;
-    background-color: #ffffff;
-    border: 1px solid gold;
-    border-radius: 50px;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-    cursor: pointer;
-}
-
 .menu-list {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: calc(var(--index)*20);
-    padding: 10px;
-    display: none;
+   display: flex;
+    position: fixed;
+    z-index: 99999;
+    height: calc(var(--index) * 3.5);
+    overflow: hidden;
+    background-color: #000000;
+    width: 100%;
+    color: gold;
+    border-bottom: gold solid 2px;
 }
 
-.menu-list-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.menu-list-wrapper li {
-    margin-bottom: 5px;
-}
-
-.menu-list-wrapper li:last-child {
-    margin-bottom: 0;
-}
-.menu-line {
-    margin: 10px 0;
-    padding: 5px;
-    background-color: white;
+.logo-image {
+    width: 10%;
     border: 1px solid gold;
     border-radius: 50px;
+    margin: 10px;
+    text-align: center;
 }
 
-.menu-content {
+.logo-image img {
+
+    height: 100%;
+}
+.menu-list-wrapper {
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.menu-text {
-    display: none;
-    width: 70%;
+    justify-content: space-evenly;
+    align-items: center
 }
 
 /*======================================================================================================================
@@ -199,15 +178,15 @@ HEADER                                                                          
     letter-spacing: calc(var(--index) / 2.5);
 }
 
-
 .layer__title {
     font-size: calc(var(--index) * 0.9);
     letter-spacing: calc(var(--index) / 2.5);
     max-width: 300px;
 }
 
-.layer__caption,
-.layer__title {
+/*===================    Text animation    ===================*/
+
+.text__animation{
     opacity: 0;
 }
 
@@ -227,15 +206,11 @@ HEADER                                                                          
     }
 }
 
-.layer__caption.animate-left-to-right {
+.text__animation.animate-left-to-right {
     animation-name: slideIn;
     animation-delay: 0.2s;
 }
 
-.layer__title.animate-left-to-right {
-    animation-name: slideIn;
-    animation-delay: 0.6s;
-}
 
 /*=================== Parallax animation ===================*/
 
